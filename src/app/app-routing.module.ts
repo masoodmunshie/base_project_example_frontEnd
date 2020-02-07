@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'test2',
+    path: '',
     component: LoginLayoutComponent,
     children: [
       {
