@@ -7,6 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeLayoutsComponent } from './layouts/home-layouts/home-layouts.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {FormsModule} from '@angular/forms';
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 
 @NgModule({
@@ -15,14 +21,28 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent, 
     HomeLayoutsComponent,
     LoginLayoutComponent,
-    DashboardComponent
+    DashboardComponent, 
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule,
+    FormsModule, 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:44394"],
+        blacklistedRoutes: []
+      }
+    })
+    
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    
+  ]
 })
 export class AppModule { }

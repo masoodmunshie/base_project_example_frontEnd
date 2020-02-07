@@ -4,13 +4,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeLayoutsComponent } from './layouts/home-layouts/home-layouts.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { AuthGuard } from './services/authGuard.service';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeLayoutsComponent,
-    // canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
     children: [
       {
         path: '',
