@@ -5,6 +5,7 @@ import { HomeLayoutsComponent } from './layouts/home-layouts/home-layouts.compon
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { AuthGuard } from './services/authGuard.service';
+import { RolesComponent } from './userManagement/roles/roles.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent
-      }
+      }, 
+      { path : 'roles', component: RolesComponent}
     ]
   },
   {
