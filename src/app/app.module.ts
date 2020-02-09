@@ -11,6 +11,8 @@ import {FormsModule} from '@angular/forms';
 import { JwtModule } from "@auth0/angular-jwt";
 import { RolesComponent } from './userManagement/roles/roles.component';
 import { UsersComponent } from './userManagement/users/users.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -27,12 +29,15 @@ export function tokenGetter() {
     RolesComponent,
     UsersComponent, 
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule,
     FormsModule, 
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
