@@ -4,6 +4,7 @@ import { auth, auth_response } from '../models/auth.model';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,12 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   auth_response: auth_response;
+  // Form validation
+
+  form = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  })
 
   constructor(public login_service: LoginService, private router: Router, private toastre: ToastrService ) { }
 
@@ -41,8 +48,6 @@ export class LoginComponent implements OnInit {
         this.toastre.error('Login Unsuccessful', 'Authorization')
 
       }
-      
-      
     },
     err => {
       this.auth_response.success = false;

@@ -3,14 +3,15 @@
       <div class="login-logo">
         <a href="../../index2.html"><b>Example</b>Project</a>
       </div>
-      <!-- /.login-logo -->
+     
       <div class="card">
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
-    
-          <form (ngSubmit)="Login(LoginForm.value)" #LoginForm="ngForm">
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" name="username" id="username" ngModel placeholder="Email">
+         
+          <form  name="form"  [formGroup]="form" #LoginForm="ngForm" (ngSubmit)="Login(LoginForm.value)">
+            <div class="input-group mb-3" >
+              <input type="email" class="form-control" formControlName="username" name="username"  id="username" placeholder="Email"
+               [ngClass]="{'is-invalid':form.get('username').touched && form.get('username').invalid}" >
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-envelope"></span>
@@ -18,7 +19,8 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" ngModel id="password" name="password" placeholder="Password">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password"  formControlName="password"
+              [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-lock"></span>
@@ -26,19 +28,14 @@
               </div>
             </div>
             <div class="row">
-              <!-- /.col -->
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <button type="submit"  [ngClass]="{'disabled':form.invalid}" class="btn btn-primary btn-block">Login</button>
               </div>
-              <!-- /.col -->
             </div>
-          </form>
-    
+          </form>    
           <div class="social-auth-links text-center mb-3">
-          
           </div>
           <!-- /.social-auth-links -->
-    
           <p class="mb-1">
             <a href="forgot-password.html">I forgot my password</a>
          <br/><br/>
